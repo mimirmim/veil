@@ -219,7 +219,7 @@ public:
     bool ExpandTempRecipients(std::vector<CTempRecipient> &vecSend, std::string &sError);
     void MarkInputsAsPendingSpend(CTransactionRecord &rtx);
 
-    int AddCTData(CTxOutBase *txout, CTempRecipient &r, std::string &sError, bool fProofOfStake = false);
+    bool AddCTData(CTxOutBase *txout, CTempRecipient &r, std::string &sError, bool fProofOfStake = false);
 
     bool SetChangeDest(const CCoinControl *coinControl, CTempRecipient &r, std::string &sError);
 
