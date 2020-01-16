@@ -1198,16 +1198,21 @@ static UniValue sendrawtransaction(const JSONRPCRequest& request)
     if(!g_connman)
         throw JSONRPCError(RPC_CLIENT_P2P_DISABLED, "Error: Peer-to-peer functionality missing or disabled");
 
+//    CInv inv(MSG_TX, hashTx);
+//    if (fDandelion) {
+//        LOCK(veil::dandelion.cs);
+//        veil::dandelion.Add(hashTx, GetAdjustedTime() + veil::dandelion.nDefaultStemTime, veil::dandelion.nDefaultNodeID);
+//    }
+//    else {
+//        g_connman->ForEachNode([&inv](CNode *pnode) {
+//            pnode->PushInventory(inv);
+//        });
+//    }
+
     CInv inv(MSG_TX, hashTx);
-    if (fDandelion) {
-        LOCK(veil::dandelion.cs);
-        veil::dandelion.Add(hashTx, GetAdjustedTime() + veil::dandelion.nDefaultStemTime, veil::dandelion.nDefaultNodeID);
-    }
-    else {
-        g_connman->ForEachNode([&inv](CNode *pnode) {
-            pnode->PushInventory(inv);
-        });
-    }
+    g_connman->ForEachNode([&inv](CNode* pnode) {
+        pnode->PushInventory(inv);
+    });
 
     return hashTx.GetHex();
 }
