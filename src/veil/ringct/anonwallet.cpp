@@ -1572,7 +1572,7 @@ int AnonWallet::AddCTData(CTxOutBase *txout, CTempRecipient &r, std::string &sEr
     // If this is proof os stake, we must update ct_bits to compact the size of
     // the rangeproof and return our weight as it can not be 0.
     if (fProofOfStake) {
-        RingCtStakeWeightBits(nAmount, min_value, ct_bits);
+        RingCtStakeWeight(nAmount, min_value, ct_bits);
     }
 
     if (r.fOverwriteRangeProofParams == true && !fProofOfStake) {
