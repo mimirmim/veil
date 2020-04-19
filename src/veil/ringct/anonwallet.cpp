@@ -1554,8 +1554,8 @@ bool AnonWallet::AddCTData(CTxOutBase *txout, CTempRecipient &r, std::string &sE
         return error("%s: %s", __func__, sError);
     }
 
-    uint64_t nValue = r.nAmount;
-    if (!secp256k1_pedersen_commit(secp256k1_ctx_blind, pCommitment, (uint8_t*)&r.vBlind[0], nValue, secp256k1_generator_h)) {
+    uint64_t nAmount = r.nAmount;
+    if (!secp256k1_pedersen_commit(secp256k1_ctx_blind, pCommitment, (uint8_t*)&r.vBlind[0], nAmount, secp256k1_generator_h)) {
         sError = strprintf("Pedersen commit failed.");
         return error("%s: %s", __func__, sError);
     }
