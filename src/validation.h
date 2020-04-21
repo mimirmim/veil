@@ -534,7 +534,9 @@ extern std::unique_ptr<Precompute> pprecompute;
  */
 int GetSpendHeight(const CCoinsViewCache& inputs);
 
-static bool isPowTimeStampActive() { return (chainActive.Tip()->nTime >= nPowTimeStampActive); }
+// XXX - TODO - Change below to be relevant
+//static bool isPowTimeStampActive() { return (chainActive.Tip()->nTime >= nPowTimeStampActive); }
+static bool isPowTimeStampActive() { return (chainActive.Height() >= 0); }
 
 extern VersionBitsCache versionbitscache;
 

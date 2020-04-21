@@ -341,6 +341,7 @@ public:
         nDefaultSecurityLevel = 100; //full security level for accumulators
         nZerocoinRequiredStakeDepth = 200; //The required confirmations for a zerocoin to be stakable
         nZerocoinRequiredStakeDepthV2 = 1000; //The required confirmations for a zerocoin to be stakable
+        nRequiredStakeDepth= 1000; //The required confirmations for a RingCT TXO to be stakable
         nHeightPoSStart = 1500;
         nKernelModulus = 100;
         nCoinbaseMaturity = 100;
@@ -506,6 +507,7 @@ public:
         nDefaultSecurityLevel = 100; //full security level for accumulators
         nZerocoinRequiredStakeDepth = 10; //The required confirmations for a zerocoin to be stakable
         nZerocoinRequiredStakeDepthV2 = 10; //The required confirmations for a zerocoin to be stakable
+        nRequiredStakeDepth= 12; //The required confirmations for a RingCT TXO to be stakable
         nHeightPoSStart = 100;
         nKernelModulus = 10;
         nCoinbaseMaturity = 10;
@@ -660,6 +662,7 @@ public:
         nDefaultSecurityLevel = 100; //full security level for accumulators
         nZerocoinRequiredStakeDepth = 10; //The required confirmations for a zerocoin to be stakable
         nZerocoinRequiredStakeDepthV2 = 10; //The required confirmations for a zerocoin to be stakable
+        nRequiredStakeDepth= 12; //The required confirmations for a RingCT TXO to be stakable
         nHeightPoSStart = 100;
         nKernelModulus = 10;
         nCoinbaseMaturity = 10;
@@ -793,6 +796,7 @@ public:
         nRequiredAccumulation = 1;
         nDefaultSecurityLevel = 100; //full security level for accumulators
         nZerocoinRequiredStakeDepth = 10; //The required confirmations for a zerocoin to be stakable
+        nRequiredStakeDepth= 12; //The required confirmations for a RingCT TXO to be stakable
         nHeightPoSStart = 100;
         nKernelModulus = 10;
         nCoinbaseMaturity = 10;
