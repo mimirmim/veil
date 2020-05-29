@@ -443,7 +443,7 @@ bool CheckTransaction(const CTransaction& tx, CValidationState &state, bool fSki
             return state.DoS(100, false, REJECT_INVALID, "bad-cb-length");
     } else if (tx.IsZerocoinSpend()) {
         if (tx.vin.size() < 1 || static_cast<int>(tx.vin.size()) > Params().Zerocoin_MaxSpendsPerTransaction())
-            return state.DoS(10, error("CheckTransaction() : Zerocoin Spend has more than allowed txin's"),
+            return state.DoS(10, error("%s: Zerocoin Spend has more than allowed txins", __func__),
                              REJECT_INVALID, "bad-zerocoinspend");
     } else {
         for (const auto& txin : tx.vin)
