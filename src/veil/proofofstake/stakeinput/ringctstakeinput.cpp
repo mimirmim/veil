@@ -1,4 +1,4 @@
-// Copyright (c) 2019 The Veil developers
+// Copyright (c) 2019-2020 The Veil developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -133,6 +133,7 @@ bool RingCtStakeCandidate::CreateCoinStake(CWallet* pwallet, const CAmount& nBlo
     if (!panonWallet->AddAnonInputs(wtx, rtx, vecSend, /*fSign*/false, /*nRingSize*/Params().DefaultRingSize(), /*nInputsPerSig*/32, nFeeRet, &coinControl, strError))
         return error("%s: AddAnonInputs failed with error %s", __func__, strError);
 
+    txCoinStake = CMutableTransaction(*wtx.tx);
     return true;
 }
 

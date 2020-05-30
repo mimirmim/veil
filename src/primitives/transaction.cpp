@@ -1,6 +1,6 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2019 The Bitcoin Core developers
-// Copyright (c) 2019 Veil developers
+// Copyright (c) 2019-2020 Veil developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -304,7 +304,7 @@ std::string CTransaction::ToString() const
 
 bool CTransaction::IsCoinBase() const
 {
-    return !IsZerocoinSpend() && (vin.size() == 1 && vin[0].prevout.IsNull());
+    return (!IsZerocoinSpend() && !IsAnonInput()) && (vin.size() == 1 && vin[0].prevout.IsNull());
 }
 
 bool CTransaction::IsCoinStake() const
@@ -312,11 +312,20 @@ bool CTransaction::IsCoinStake() const
     if (vin.empty())
         return false;
 
-    if (vin.size() != 1 || !vin[0].IsZerocoinSpend())
+    if (vin.size() != 1 || (!vin[0].IsZerocoinSpend() && !vin[0].IsAnonInput()))
         return false;
 
     // the coin stake transaction is marked with the first output empty
     return (vpout.size() > 1 && vpout[0]->IsEmpty());
+}
+
+bool CTransaction::IsAnonInput() const
+{
+    for (const auto& in : vin) {
+        if (in.IsAnonInput())
+            return true;
+    }
+    return false;
 }
 
 bool CTransaction::HasBlindedValues() const
